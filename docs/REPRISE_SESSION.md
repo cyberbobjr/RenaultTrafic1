@@ -23,3 +23,11 @@
 - Simulation avec l'outil local `steam_workshop_publish.py` : aucun blocage, 22 fichiers / 2,1 Mo, anglais 2 109 octets et français 2 431 octets avant attribution de l'ID Workshop. Les outils ajoutent automatiquement les identifiants à chaque langue.
 - Contrôles de structure et de métadonnées effectués ; aucun nouveau test en jeu ou en multijoueur. Le retour sur les roues et vitres demeure en attente.
 - Création du dépôt Git nécessaire : le projet n'en possédait pas. Sources Blender et outils inclus ; sauvegardes, diagnostics, fichiers temporaires et rendus intermédiaires exclus par `.gitignore`.
+
+## Première publication réalisée — 2026-10-06
+
+- Dépôt public créé : `https://github.com/cyberbobjr/RenaultTrafic1`, branche `main`. Commit initial `3aa3ef7`, poussé avant publication.
+- Envoi Steam réussi pour la version `0.1.0`, contenu et aperçu inclus. Traduction française acceptée par l'API. Workshop ID `3814732564`, Mod ID `batman_RenaultTrafic1`. Aucun aperçu additionnel avant/après (0).
+- Vérification indépendante via `GetPublishedFileDetails` : résultat 1, application 108600, visibilité 0 (publique), taille 2 232 768 octets, titre et tags conformes, description anglaise terminée par les bons identifiants. La page française n'a pas pu être relue par HTTP (429) ; son envoi est confirmé par le succès de l'API, pas par une inspection visuelle de la page.
+- Identifiant écrit par l'outil dans `workshop.txt`, lien ajouté au README, mémoire actualisée puis second commit et push pour conserver ces métadonnées.
+- Aucun test en jeu ajouté à cette étape, ni nouvelle entrée moteur nécessaire dans la base générique.

@@ -4,6 +4,8 @@ Premier essai de véhicule pour Project Zomboid, réalisé en pilotant Blender v
 
 Fourgon tôlé de 1985, empattement court et toit bas, deux places avant, stockage de 120 accessible à l'arrière et par la porte coulissante. Peinture blanche ou bleue, intérieur modélisé, portes et capot animés.
 
+**Version 0.1.0 :** [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3814732564). Workshop ID : `3814732564` ; Mod ID : `batman_RenaultTrafic1`.
+
 ## Contenu du dépôt
 
 - `Contents/mods/batman_RenaultTrafic1/` : mod à charger, ressources dans `common`, scripts et Lua dans `42.21`.
