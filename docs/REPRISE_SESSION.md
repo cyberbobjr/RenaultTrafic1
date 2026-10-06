@@ -31,3 +31,11 @@
 - Vérification indépendante via `GetPublishedFileDetails` : résultat 1, application 108600, visibilité 0 (publique), taille 2 232 768 octets, titre et tags conformes, description anglaise terminée par les bons identifiants. La page française n'a pas pu être relue par HTTP (429) ; son envoi est confirmé par le succès de l'API, pas par une inspection visuelle de la page.
 - Identifiant écrit par l'outil dans `workshop.txt`, lien ajouté au README, mémoire actualisée puis second commit et push pour conserver ces métadonnées.
 - Aucun test en jeu ajouté à cette étape, ni nouvelle entrée moteur nécessaire dans la base générique.
+
+## Comparaison des roues avec les véhicules vanilla — 2026-10-06
+
+- L'utilisateur demande si les roues doivent être dans un modèle séparé. Investigation en lecture seule des ressources du jeu et du mod : aucune correction nécessaire.
+- Build exécutée confirmée dans `console.txt:59` : `42.21.0`. Le Van utilise `template = Tire` (`media/scripts/generated/vehicles/vehicle_van.txt:100`), puis `InflatedTirePlusWheel` avec `file = Vehicles_Wheel` (`template_tire.txt:108-110`). Ce modèle de roue est déclaré séparément de la caisse (`models_vehicles.txt:3-7`).
+- Le Trafic suit la même structure : `part Tire*` référence `batman_TraficI_Wheel` (`batman_RenaultTraficI.txt:534-539`), modèle avec maillage FBX propre, texture dédiée et shader `vehiclewheel` (`batman_RenaultTraficI_models.txt:131-137`). Les instances droites sont tournées de 180 degrés pour orienter les jantes vers l'extérieur.
+- `BaseVehicle.java:4194-4211` applique à chaque roue sa suspension, son braquage et sa rotation. Le retrait d'un pneu masque individuellement `InflatedTirePlusWheel` (`Vehicles.lua:1356-1360`). Le modèle séparé est donc cohérent avec le fonctionnement vanilla et doit être conservé.
+- Confirmation statique uniquement, sans nouveau test en jeu. Fait général précisé dans `vehicle-templates.md`, section « Roues : modèle séparé et texture », et index de la base actualisé.
