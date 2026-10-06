@@ -1,0 +1,640 @@
+/* Renault Trafic I (T800, short wheelbase, low roof, blind panel van).
+   Values are written in real metres and multiplied by the model scale (0.85) at load
+   (VehicleScript.Loaded): 3.69 x 1.62 x 1.67 m in game, same uniform reduction for every axis.
+   Vehicle frame: x > 0 = left, z > 0 = front. The FBX origin remains 1.0 m above the ground.
+   The physics origin is lowered by moving the model and collision +0.40 m in that frame;
+   spawn height compensates -0.40 m. Meshes, animations, wheels and passenger positions retain
+   their model-space coordinates. The script centre offset keeps the Java bounding box aligned;
+   it is not a separate native centre-of-mass parameter when custom physics boxes are used.
+   Base: vanilla Van (templates, sounds, mechanics overlay). First pass: offsets to be checked
+   in game with the debug vehicle editor. */
+module Base
+{
+    vehicle batman_RenaultTraficI
+    {
+        mechanicType = 2,
+        engineRepairLevel = 4,
+        playerDamageProtection = 1.1,
+        engineRPMType = van,
+        carMechanicsOverlay = Base.Van,
+
+        model
+        {
+            file = batman_TraficI_Body,
+            scale = 0.85,
+            offset = 0.0 0.40 0.0,
+        }
+
+        skin
+        {
+            texture = Vehicles/Vehicles_batman_RenaultTraficI_Shell,
+        }
+
+        textureMask = Vehicles/Vehicles_batman_RenaultTraficI_Mask,
+        textureLights = Vehicles/Vehicles_batman_RenaultTraficI_Lights,
+        textureDamage1Overlay = Vehicles/Veh_Blood_Mask,
+        textureDamage2Overlay = Vehicles/Veh_Blood_Hvy,
+        textureDamage1Shell = Vehicles/Veh_Damage1,
+        textureDamage2Shell = Vehicles/Veh_Damage2,
+        textureRust = Vehicles/Veh_Rust,
+
+        extents = 1.90 1.60 4.34,
+        /* Low physics-origin trial: translate model offset, collision offset and Java bounding
+           centre +0.40 real metres together (0.34 m in game). CarController compensates the
+           initial height using wheel.offset + model.offset - radius. toBullet includes model.offset
+           in wheel anchors but NOT in custom physics boxes, hence the matching +0.40 below.
+           Static world-space positions are preserved; the intended reduction in pitching relies
+           on the native rigid-body origin and must be checked in game.
+           centerOfMassOffset is only used for Java bounds and spawn here: toBullet does not send
+           it as a separate centre-of-mass value with useChassisPhysicsCollision=false and a box.
+           The box bottom stays 0.50 m above the ground in real dimensions. No VanCollision. */
+        useChassisPhysicsCollision = false,
+        physicsChassisShape = 1.90 1.50 4.34,
+        centerOfMassOffset = 0.0 0.40 0.0,
+        physics box
+        {
+            offset = 0.0 0.65 0.0,
+            extents = 1.90 1.50 4.34,
+            rotate = 0.0 0.0 0.0,
+        }
+        mass = 1250,
+        engineForce = 3500,
+        engineQuality = 70,
+        engineLoudness = 90,
+        maxSpeed = 60.0,
+        brakingForce = 70,
+        stoppingMovementForce = 5.0,
+        /* rollInfluence limits lateral-force roll; the low-origin trial also targets pitch.
+           The centre-of-mass position inside the native PZ solver is not confirmed by Java. */
+        rollInfluence = 0.45,
+        steeringIncrement = 0.03,
+        steeringClamp = 0.3,
+        /* Trial after confirmed pitching with stiffness 90: firmer springs, stronger damping.
+           These damping values are healthy type-2 suspension targets, applied per part by
+           client/batman_RenaultTraficI_Physics.lua. BaseVehicle.updatePartStats replaces part
+           damping with inventory-item values; updateBulletStatsWheel sends those to Bullet,
+           overwriting the script's initial damping. Script-only changes were insufficient.
+           The calibration preserves item condition and leaves missing suspensions missing.
+           Travel scales from 16 to 13.6 cm; stiffness and damping are not scaled.
+           Collision geometry and wheel anchors stay as defined above. In-game trial required. */
+        suspensionStiffness = 120.0,
+        suspensionCompression = 12.0,
+        suspensionDamping = 10.0,
+        maxSuspensionTravelCm = 16.0,
+        /* 0.40 (0.34 m in game): the physics hangs each wheel from offset.y + suspensionRestLength
+           (VehicleScript, Bullet.defineVehicleScript) and casts its ray down by rest length + radius.
+           With 0.2 the anchor sat just above the chassis box bottom and 0.3 m above the ground: hard
+           pitching (fast reverse then forward) sank the van; probable cause: the anchors went below
+           the ground and the rays missed. Vanilla Van ~0.36 m, KI5 Type 2 0.27 m. The drawn wheel stays at offset.y at
+           rest (BaseVehicle.updateTransform), so the look does not change. */
+        suspensionRestLength = 0.40,
+        wheelFriction = 1.4,
+        frontEndDurability = 150,
+        rearEndDurability = 150,
+        seats = 2,
+        isSmallVehicle = false,
+
+        wheel FrontLeft
+        {
+            front = true,
+            offset = 0.78 -0.76 1.384,
+            radius = 0.3304,
+            width = 0.2072,
+        }
+        wheel FrontRight
+        {
+            front = true,
+            offset = -0.78 -0.76 1.384,
+            radius = 0.3304,
+            width = 0.2072,
+        }
+        wheel RearLeft
+        {
+            front = false,
+            offset = 0.76 -0.76 -1.416,
+            radius = 0.3304,
+            width = 0.2072,
+        }
+        wheel RearRight
+        {
+            front = false,
+            offset = -0.76 -0.76 -1.416,
+            radius = 0.3304,
+            width = 0.2072,
+        }
+
+        template = PassengerSeat2,
+        template = Trunk/part/TruckBed,
+        template = Seat/part/SeatFrontLeft,
+        template = Seat/part/SeatFrontRight,
+        template = GloveBox,
+        template = GasTank,
+        template = Battery,
+        template = Engine,
+        template = Muffler,
+        template = EngineDoor,
+        template = Heater,
+        template = Door/part/DoorFrontLeft,
+        template = Door/part/DoorFrontRight,
+        template = Door/part/DoorRearRight,
+        template = Door/part/DoorRear,
+        template = Tire,
+        template = Brake,
+        template = Suspension,
+        template = Radio,
+        template = Headlight,
+        /* Transparent submodels are drawn after all opaque pieces. */
+        template = Windshield/part/Windshield,
+        template = Window/part/WindowFrontLeft,
+        template = Window/part/WindowFrontRight,
+
+        passenger FrontLeft
+        {
+            showPassenger = true,
+            hasRoof = true,
+            position inside
+            {
+                offset = 0.45 -0.10 0.58,
+                rotate = 0.0 0.0 0.0,
+            }
+            position outside
+            {
+                offset = 1.30 -1.0 0.87,
+                rotate = 0.0 0.0 0.0,
+                area = SeatFrontLeft,
+            }
+        }
+        passenger FrontRight
+        {
+            showPassenger = true,
+            hasRoof = true,
+            position inside
+            {
+                offset = -0.45 -0.10 0.58,
+                rotate = 0.0 0.0 0.0,
+            }
+            position outside
+            {
+                offset = -1.30 -1.0 0.87,
+                rotate = 0.0 0.0 0.0,
+                area = SeatFrontRight,
+            }
+        }
+
+        area Engine
+        {
+            xywh = 0.0 2.55 1.2 0.6,
+        }
+        area TruckBed
+        {
+            xywh = 0.0 -2.55 1.2 0.6,
+        }
+        area SeatFrontLeft
+        {
+            xywh = 1.30 0.87 0.8 1.0,
+        }
+        area SeatFrontRight
+        {
+            xywh = -1.30 0.87 0.8 1.0,
+        }
+        area SeatRearRight
+        {
+            xywh = -1.30 -0.20 0.8 1.1,
+        }
+        area GasTank
+        {
+            xywh = 1.30 -1.10 0.8 0.8,
+        }
+        area TireFrontLeft
+        {
+            xywh = 1.30 1.384 0.8 0.8,
+        }
+        area TireFrontRight
+        {
+            xywh = -1.30 1.384 0.8 0.8,
+        }
+        area TireRearLeft
+        {
+            xywh = 1.30 -1.416 0.8 0.8,
+        }
+        area TireRearRight
+        {
+            xywh = -1.30 -1.416 0.8 0.8,
+        }
+
+        /* One cargo inventory, reached through rear doors or the sliding side door. */
+        part TruckBed
+        {
+            container
+            {
+                capacity = 120,
+                test = batman_RenaultTraficI.CargoAccess,
+            }
+        }
+
+        /* the cab interior (dashboard, steering wheel, floors, partition) rides on the glove box,
+           which cannot be removed */
+        part GloveBox
+        {
+            model Interior
+            {
+                file = batman_TraficI_Interior,
+            }
+            /* replaces the template's lua block: Vehicles.Create.Default, then white or blue paint
+               (media/lua/server/batman_RenaultTraficI_Paint.lua) */
+            lua
+            {
+                create = batman_RenaultTraficI.CreateGloveBox,
+            }
+        }
+
+        part SeatFrontLeft
+        {
+            model Seat
+            {
+                file = batman_TraficI_SeatFL,
+            }
+        }
+        part SeatFrontRight
+        {
+            model Seat
+            {
+                file = batman_TraficI_SeatFR,
+            }
+        }
+        part Seat*
+        {
+            table install
+            {
+                skills = Mechanics:2,
+                recipes = Intermediate Mechanics,
+            }
+            table uninstall
+            {
+                skills = Mechanics:2,
+                recipes = Intermediate Mechanics,
+            }
+        }
+
+        part Windshield
+        {
+            model Glass
+            {
+                file = batman_TraficI_Windshield,
+            }
+        }
+        part Windshield*
+        {
+            table install
+            {
+                recipes = Intermediate Mechanics,
+            }
+            table uninstall
+            {
+                recipes = Intermediate Mechanics,
+            }
+        }
+
+        part WindowFrontLeft
+        {
+            parent = DoorFrontLeft,
+            model Glass
+            {
+                file = batman_TraficI_WindowFL,
+            }
+            anim ClosedToOpen
+            {
+                anim = window_fl_opening,
+                animate = false,
+            }
+        }
+        part WindowFrontRight
+        {
+            parent = DoorFrontRight,
+            model Glass
+            {
+                file = batman_TraficI_WindowFR,
+            }
+            anim ClosedToOpen
+            {
+                anim = window_fr_opening,
+                animate = false,
+            }
+        }
+        part Window*
+        {
+            table install
+            {
+                recipes = Intermediate Mechanics,
+            }
+            table uninstall
+            {
+                recipes = Intermediate Mechanics,
+            }
+        }
+
+        part Door*
+        {
+            table install
+            {
+                recipes = Intermediate Mechanics,
+            }
+            table uninstall
+            {
+                recipes = Intermediate Mechanics,
+            }
+        }
+        part DoorFrontLeft
+        {
+            model Default
+            {
+                file = batman_TraficI_DoorFL,
+            }
+            anim Close
+            {
+                anim = door_fl_opening,
+                reverse = true,
+                rate = 1.5,
+            }
+            anim Open
+            {
+                anim = door_fl_opening,
+                rate = 1.0,
+            }
+            anim Closed
+            {
+                anim = door_fl_opening,
+                animate = false,
+            }
+            anim Opened
+            {
+                anim = door_fl_opening,
+                reverse = true,
+                animate = false,
+            }
+        }
+        part DoorFrontRight
+        {
+            model Default
+            {
+                file = batman_TraficI_DoorFR,
+            }
+            anim Close
+            {
+                anim = door_fr_opening,
+                reverse = true,
+                rate = 1.5,
+            }
+            anim Open
+            {
+                anim = door_fr_opening,
+                rate = 1.0,
+            }
+            anim Closed
+            {
+                anim = door_fr_opening,
+                animate = false,
+            }
+            anim Opened
+            {
+                anim = door_fr_opening,
+                reverse = true,
+                animate = false,
+            }
+        }
+        /* sliding side door: no window behind it on the Trafic, so the vanilla
+           "requireUninstalled = WindowRearRight" is replaced by a full uninstall table */
+        part DoorRearRight
+        {
+            /* This cargo door has no passenger seat: E toggles it like a trunk door.
+               A lua block replaces the inherited block, so preserve create/init. */
+            lua
+            {
+                create = Vehicles.Create.Door,
+                init = Vehicles.Init.Door,
+                use = Vehicles.Use.TrunkDoor,
+            }
+            model Default
+            {
+                file = batman_TraficI_DoorRR,
+            }
+            anim Close
+            {
+                anim = door_rr_opening,
+                reverse = true,
+                rate = 1.2,
+            }
+            anim Open
+            {
+                anim = door_rr_opening,
+                rate = 1.0,
+            }
+            anim Closed
+            {
+                anim = door_rr_opening,
+                animate = false,
+            }
+            anim Opened
+            {
+                anim = door_rr_opening,
+                reverse = true,
+                animate = false,
+            }
+            table uninstall
+            {
+                items
+                {
+                    1
+                    {
+                        tags = base:wrench,
+                        count = 1,
+                        keep = true,
+                        equip = primary,
+                    }
+                }
+                time = 300,
+                skills = Mechanics:4,
+                recipes = Intermediate Mechanics,
+                test = Vehicles.UninstallTest.Default,
+                complete = Vehicles.UninstallComplete.Door,
+            }
+        }
+        /* twin rear doors: one part (like the vanilla Van), both leaves in one model */
+        part DoorRear
+        {
+            model Default
+            {
+                file = batman_TraficI_RearDoors,
+            }
+            anim Close
+            {
+                anim = trunk_opening,
+                reverse = true,
+                rate = 1.5,
+            }
+            anim Open
+            {
+                anim = trunk_opening,
+                rate = 1.0,
+            }
+            anim Closed
+            {
+                anim = trunk_opening,
+                animate = false,
+            }
+            anim Opened
+            {
+                anim = trunk_opening,
+                reverse = true,
+                animate = false,
+            }
+        }
+
+        /* bonnet: opens with the mechanics panel */
+        part EngineDoor
+        {
+            model Default
+            {
+                file = batman_TraficI_Hood,
+            }
+            anim Close
+            {
+                anim = hood_opening,
+                reverse = true,
+                rate = 1.5,
+            }
+            anim Open
+            {
+                anim = hood_opening,
+                rate = 1.0,
+            }
+            anim Closed
+            {
+                anim = hood_opening,
+                animate = false,
+            }
+            anim Opened
+            {
+                anim = hood_opening,
+                reverse = true,
+                animate = false,
+            }
+            table install
+            {
+                recipes = Intermediate Mechanics,
+            }
+            table uninstall
+            {
+                recipes = Intermediate Mechanics,
+            }
+        }
+
+        /* one wheel model for the four positions; the right-hand ones are turned round so the
+           rim faces outwards */
+        part Tire*
+        {
+            model InflatedTirePlusWheel
+            {
+                file = batman_TraficI_Wheel,
+            }
+        }
+        part TireFrontRight
+        {
+            model InflatedTirePlusWheel
+            {
+                file = batman_TraficI_Wheel,
+                rotate = 0.0 180.0 0.0,
+            }
+        }
+        part TireRearRight
+        {
+            model InflatedTirePlusWheel
+            {
+                file = batman_TraficI_Wheel,
+                rotate = 0.0 180.0 0.0,
+            }
+        }
+
+        part GasTank
+        {
+            table install
+            {
+                skills = Mechanics:7,
+                recipes = Intermediate Mechanics,
+            }
+            table uninstall
+            {
+                skills = Mechanics:7,
+                recipes = Intermediate Mechanics,
+            }
+        }
+        part Muffler
+        {
+            table install
+            {
+                recipes = Intermediate Mechanics,
+            }
+            table uninstall
+            {
+                recipes = Intermediate Mechanics,
+            }
+        }
+        part Heater
+        {
+            category = engine,
+            lua
+            {
+                update = Vehicles.Update.Heater,
+            }
+        }
+        part PassengerCompartment
+        {
+            category = nodisplay,
+            lua
+            {
+                update = Vehicles.Update.PassengerCompartment,
+            }
+        }
+        part Brake*
+        {
+            table install
+            {
+                skills = Mechanics:6,
+                recipes = Intermediate Mechanics,
+            }
+            table uninstall
+            {
+                skills = Mechanics:6,
+                recipes = Intermediate Mechanics,
+            }
+        }
+        part Suspension*
+        {
+            table install
+            {
+                skills = Mechanics:6,
+                recipes = Intermediate Mechanics,
+            }
+            table uninstall
+            {
+                skills = Mechanics:6,
+                recipes = Intermediate Mechanics,
+            }
+        }
+
+        template! = SoundsVan,
+
+        attachment trailer
+        {
+            offset = 0.0 -0.55 -2.25,
+            rotate = 0.0 0.0 0.0,
+            zoffset = -1.0,
+        }
+        attachment trailerfront
+        {
+            offset = 0.0 -0.55 2.25,
+            rotate = 0.0 0.0 0.0,
+            zoffset = 1.0,
+        }
+    }
+}

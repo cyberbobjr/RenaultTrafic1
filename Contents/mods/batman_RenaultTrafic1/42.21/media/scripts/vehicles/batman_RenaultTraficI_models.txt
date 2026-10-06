@@ -1,0 +1,139 @@
+/* Renault Trafic I - models.
+   One FBX (common/media/models_X/vehicles/Vehicles_batman_RenaultTraficI.fbx) holds every part as
+   a named node, the skeleton (trafic_root, door_fl/fr_bone, window_fl/fr_bone, door_rr_bone,
+   trunk_l/r_bone, hood_bone) and the *_opening animations, laid out like the vanilla
+   ModernCarWithDoors.blend (Assets/tools/trafic_export_fbx.py). The skeleton node is named
+   VehicleSkeleton (the name jassimp/ImportedSkeleton looks for) and every FBX node has an identity
+   transform: vertices and bones already hold the game coordinates in metres, hence scale 1.0.
+   Body/opaque parts use vanilla vehicle_multiuv_noreflect: the game appends "_static"
+   for static models (core/opengl/ShaderProgram) and vehicle_multiuv has no animated vertex
+   program, so the moving parts cannot use it; and vehicle_multiuv.frag blends the body towards a
+   quarter of the sky reflection (up to 35 %), which made the body darker than the doors. Same
+   shader on opaque parts = same shade everywhere. The three glass models use the authorised
+   standalone batman_trafic_glass (same vehicle interface, alpha 0.28 on glass, opaque seals;
+   no damnlib). Wheels use vehiclewheel and scale 1.12.
+   Each animated part is masked to its own bone (boneWeight, without descendants). A child part
+   (window, parent = DoorFrontLeft) shares its parent's animation player
+   (BaseVehicle.ModelInfo.getAnimationPlayer): the door track moves the door bone, the window
+   track moves the window bone, so the window follows its door. Masked bones keep an identity
+   local transform, hence VehicleSkeleton and trafic_root rest at the identity in the FBX. */
+module Base
+{
+    model batman_TraficI_Body
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_body,
+        shader = vehicle_multiuv_noreflect,
+        invertX = false,
+        static = true,
+        scale = 1.0,
+    }
+
+    model batman_TraficI_Interior
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_interior,
+        shader = vehicle_multiuv_noreflect,
+        static = true,
+        scale = 1.0,
+    }
+
+    model batman_TraficI_SeatFL
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_seat_fl,
+        shader = vehicle_multiuv_noreflect,
+        static = true,
+        scale = 1.0,
+    }
+
+    model batman_TraficI_SeatFR
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_seat_fr,
+        shader = vehicle_multiuv_noreflect,
+        static = true,
+        scale = 1.0,
+    }
+
+    model batman_TraficI_Windshield
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_windshield,
+        shader = batman_trafic_glass,
+        static = true,
+        scale = 1.0,
+    }
+
+    model batman_TraficI_DoorFL
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_door_fl,
+        shader = vehicle_multiuv_noreflect,
+        static = false,
+        scale = 1.0,
+        boneWeight = door_fl_bone 1.0,
+    }
+
+    model batman_TraficI_DoorFR
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_door_fr,
+        shader = vehicle_multiuv_noreflect,
+        static = false,
+        scale = 1.0,
+        boneWeight = door_fr_bone 1.0,
+    }
+
+    model batman_TraficI_WindowFL
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_window_fl,
+        shader = batman_trafic_glass,
+        static = false,
+        scale = 1.0,
+        boneWeight = window_fl_bone 1.0,
+    }
+
+    model batman_TraficI_WindowFR
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_window_fr,
+        shader = batman_trafic_glass,
+        static = false,
+        scale = 1.0,
+        boneWeight = window_fr_bone 1.0,
+    }
+
+    /* sliding side door (right) */
+    model batman_TraficI_DoorRR
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_door_rr,
+        shader = vehicle_multiuv_noreflect,
+        static = false,
+        scale = 1.0,
+        boneWeight = door_rr_bone 1.0,
+    }
+
+    /* twin rear doors: one mesh, skinned to trunk_l_bone / trunk_r_bone in the FBX */
+    model batman_TraficI_RearDoors
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_trunkdoor,
+        shader = vehicle_multiuv_noreflect,
+        static = false,
+        scale = 1.0,
+        boneWeight = trunk_l_bone 1.0,
+        boneWeight = trunk_r_bone 1.0,
+    }
+
+    model batman_TraficI_Hood
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI|TrafI_hood,
+        shader = vehicle_multiuv_noreflect,
+        static = false,
+        scale = 1.0,
+        boneWeight = hood_bone 1.0,
+    }
+
+    /* one wheel for the four positions: axle along X, rim facing the left side (-X in the model);
+       the right-hand tires turn it round (vehicle script) */
+    model batman_TraficI_Wheel
+    {
+        mesh = vehicles/Vehicles_batman_RenaultTraficI_Wheel,
+        texture = Vehicles/Vehicles_batman_RenaultTraficI_Wheel,
+        shader = vehiclewheel,
+        /* +12% over the original wheel mesh; matches radius/width in the vehicle script. */
+        scale = 1.12,
+    }
+}

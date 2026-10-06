@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.blend1
+*.blend2
+Assets/backup/
+Assets/build/
+Assets/diagnostics/
+Assets/RenaultTrafic1_ebauche.blend
+Assets/art/mod.info.before_art
+*.log
+.env
+.env.*

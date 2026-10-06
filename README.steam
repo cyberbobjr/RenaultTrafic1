@@ -1,0 +1,35 @@
+[h1]Renault Trafic I T800 — 1985[/h1]
+
+A first-generation Renault Trafic for [b]Project Zomboid Build 42.21[/b]: short wheelbase, low roof and a panel cargo body without rear side windows. A modest work van to haul your supplies through Kentucky.
+
+[h2]My first vehicle experiment[/h2]
+
+This is [b]my first attempt at making a vehicle for Project Zomboid[/b], while trying to control Blender through a coding agent. The vehicle was generated from [b]official vehicle blueprints[/b], without using any existing 3D model. The body, interior, wheels and animations were built for this project.
+
+It is an experiment that I intend to keep improving. Feedback on its appearance, handling and everyday use is welcome.
+
+[h2]Features[/h2]
+[list]
+[*]Original model of the 1985 Renault Trafic I T800 panel van.
+[*]Two front seats and a cargo capacity of 120.
+[*]Animated front doors, right sliding cargo door, twin rear doors and hood.
+[*]The same cargo storage is accessible through the rear doors or the open sliding door.
+[*]Clean bodywork in white or blue: approximately 70% white and 30% blue when vehicles are created.
+[*]Modelled interior, textured wheels and transparent windscreen and front door glass.
+[*]Natural vehicle spawns in parking, delivery and trades zones, as well as junkyards.
+[*]Vanilla vehicle mechanics and loot. No other mod is required.
+[/list]
+
+[h2]Build and feedback[/h2]
+
+Made for [b]Build 42.21[/b]. This first release is a work in progress. For bug reports, please include your game version, active mods and the circumstances of the issue. A written description is useful even without a screenshot.
+
+[h2]Support the project[/h2]
+
+Enjoy the mod? A coffee helps fund what comes next.
+[url=https://ko-fi.com/Z8Z8QJV31][img]https://storage.ko-fi.com/cdn/kofi6.png?v=6[/img][/url]
+
+[h2]Credits and source[/h2]
+
+Created by [b]batman[/b], using Blender controlled through a coding agent and official vehicle blueprints. No pre-existing vehicle model was used.
+Source and project files: [url=https://github.com/cyberbobjr/RenaultTrafic1]GitHub[/url].

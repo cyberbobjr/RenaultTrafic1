@@ -1,0 +1,35 @@
+[h1]Renault Trafic I T800 — 1985[/h1]
+
+Un Renault Trafic de première génération pour [b]Project Zomboid Build 42.21[/b] : empattement court, toit bas et fourgon tôlé sans vitres de soute. Un petit utilitaire pour transporter vos réserves sur les routes du Kentucky.
+
+[h2]Mon premier essai de véhicule[/h2]
+
+C'est [b]mon premier essai de création d'un véhicule pour Project Zomboid[/b], en tentant de piloter Blender via un agent de codage. Le véhicule a été généré à partir des [b]blueprints officiels du véhicule[/b], sans aucune utilisation d'un modèle 3D existant. La carrosserie, l'intérieur, les roues et les animations ont été construits pour ce projet.
+
+C'est une expérimentation que je compte continuer à améliorer. Vos retours sur l'apparence, la conduite et l'utilisation au quotidien sont les bienvenus.
+
+[h2]Contenu[/h2]
+[list]
+[*]Modèle original du Renault Trafic I T800 de 1985 en version fourgon tôlé.
+[*]Deux places à l'avant et une capacité de stockage de 120.
+[*]Portières avant, porte coulissante droite, deux battants arrière et capot animés.
+[*]Le même stockage est accessible par les portes arrière ou par la porte coulissante ouverte.
+[*]Carrosserie propre, blanche ou bleue : environ 70 % de blanc et 30 % de bleu à la création des véhicules.
+[*]Intérieur modélisé, roues texturées, pare-brise et vitres des portières transparents.
+[*]Apparition naturelle dans les zones de stationnement, de livraison et d'artisans, ainsi que dans les casses.
+[*]Mécanique et butin du fourgon vanilla. Aucun autre mod requis.
+[/list]
+
+[h2]Version du jeu et retours[/h2]
+
+Conçu pour la [b]Build 42.21[/b]. Cette première version est encore en développement. Pour signaler un problème, indiquez votre version du jeu, vos mods actifs et les circonstances dans lesquelles il se produit. Une description écrite est utile même sans capture d'écran.
+
+[h2]Soutenir le projet[/h2]
+
+Le mod vous plaît ? Un café aide à financer la suite.
+[url=https://ko-fi.com/Z8Z8QJV31][img]https://storage.ko-fi.com/cdn/kofi6.png?v=6[/img][/url]
+
+[h2]Crédits et sources[/h2]
+
+Créé par [b]batman[/b], avec Blender piloté via un agent de codage et les blueprints officiels du véhicule. Aucun modèle de véhicule préexistant n'a été utilisé.
+Code source et fichiers du projet : [url=https://github.com/cyberbobjr/RenaultTrafic1]GitHub[/url].
