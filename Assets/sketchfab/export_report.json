@@ -1,0 +1,20 @@
+{
+  "source": "C:\\Users\\cyber\\Zomboid\\Workshop\\RenaultTrafic1\\Assets\\RenaultTraficI.blend",
+  "source_scene": "Trafic_Ebauche",
+  "mesh_instances": 16,
+  "source_geometry_before": "1f470341f5d14c8a7b1330089b076b9efb9dffe620f4f671185d3cc1d151aacd",
+  "source_geometry_after": "1f470341f5d14c8a7b1330089b076b9efb9dffe620f4f671185d3cc1d151aacd",
+  "files": [
+    {
+      "file": "RenaultTraficI_blue.glb",
+      "bytes": 670604
+    },
+    {
+      "file": "RenaultTraficI_white.glb",
+      "bytes": 564096
+    }
+  ],
+  "presentation": "static, closed doors, baked colour, PBR approximation",
+  "floor_shift_m": 0.03540000319480896,
+  "blender": "5.2.2 LTS"
+}

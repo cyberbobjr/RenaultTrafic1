@@ -39,3 +39,11 @@
 - Le Trafic suit la même structure : `part Tire*` référence `batman_TraficI_Wheel` (`batman_RenaultTraficI.txt:534-539`), modèle avec maillage FBX propre, texture dédiée et shader `vehiclewheel` (`batman_RenaultTraficI_models.txt:131-137`). Les instances droites sont tournées de 180 degrés pour orienter les jantes vers l'extérieur.
 - `BaseVehicle.java:4194-4211` applique à chaque roue sa suspension, son braquage et sa rotation. Le retrait d'un pneu masque individuellement `InflatedTirePlusWheel` (`Vehicles.lua:1356-1360`). Le modèle séparé est donc cohérent avec le fonctionnement vanilla et doit être conservé.
 - Confirmation statique uniquement, sans nouveau test en jeu. Fait général précisé dans `vehicle-templates.md`, section « Roues : modèle séparé et texture », et index de la base actualisé.
+
+## Exports Sketchfab — 2026-10-06
+
+- Demande : produire un modèle Sketchfab pour l'aperçu 3D du Workshop. Sketchfab accepte le GLB et Steam intègre le lien du modèle hébergé dans la gestion des captures/vidéos (documentation officielle consultée).
+- Créés dans `Assets/sketchfab/` : `RenaultTraficI_blue.glb` (670 604 octets) et `RenaultTraficI_white.glb` (564 096 octets), textures embarquées et rendus de présentation. 16 maillages, 4 944 triangles, matériaux opaques et vitres translucides. Modèle statique portes fermées, sans animations, caméras ou éclairages embarqués.
+- Outils : `trafic_sketchfab_textures.py` prépare les couleurs et l'alpha d'affichage ; `trafic_sketchfab_export.py` exporte et rend des copies dans une scène temporaire. Instructions et descriptions proposées FR/EN dans `Assets/sketchfab/README.md`.
+- Confirmation statique des GLB et des références embarquées, rendu Blender examiné. Géométrie/UV/transformation du modèle validé identiques avant/après ; les 22 fichiers du mod et le `.blend` sauvegardé sont inchangés. Aucun test en jeu et aucune nouvelle entrée moteur nécessaire.
+- Aucun téléversement Sketchfab effectué à cette étape. Une question sur le compte connecté / envoi manuel / préparation seule a été posée ; l'hébergement puis l'ajout de son URL sur Steam dépendent de l'accès au compte. Ne pas annoncer le modèle comme publié sur Sketchfab.
