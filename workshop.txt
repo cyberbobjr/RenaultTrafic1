@@ -27,6 +27,11 @@ description=[h2]Build and feedback[/h2]
 description=
 description=Made for [b]Build 42.21[/b]. This first release is a work in progress. For bug reports, please include your game version, active mods and the circumstances of the issue. A written description is useful even without a screenshot.
 description=
+description=[h2]Discord[/h2]
+description=
+description=Questions, bug reports or ideas? Join the Discord:
+description=[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+description=
 description=[h2]Support the project[/h2]
 description=
 description=Enjoy the mod? A coffee helps fund what comes next.

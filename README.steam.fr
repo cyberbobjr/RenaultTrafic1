@@ -24,6 +24,11 @@ C'est une expérimentation que je compte continuer à améliorer. Vos retours su
 
 Conçu pour la [b]Build 42.21[/b]. Cette première version est encore en développement. Pour signaler un problème, indiquez votre version du jeu, vos mods actifs et les circonstances dans lesquelles il se produit. Une description écrite est utile même sans capture d'écran.
 
+[h2]Discord[/h2]
+
+Questions, bugs ou idées ? Rejoignez le Discord :
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
 [h2]Soutenir le projet[/h2]
 
 Le mod vous plaît ? Un café aide à financer la suite.
