@@ -1,0 +1,44 @@
+[h1]Renault Trafic I T800 — 1985[/h1]
+
+Project Zomboid [b]Build 42.21[/b] için birinci nesil bir Renault Trafic: kısa dingil, alçak tavan ve arka yan camları olmayan tenteli kasa. Malzemelerini Kentucky yollarında taşıman için mütevazı bir iş kamyoneti.
+
+[h2]İlk araç denemem[/h2]
+
+Bu, [b]Project Zomboid için yaptığım ilk araç denemesi[/b]; aynı zamanda Blender'ı bir kodlama ajanıyla kontrol etmeyi deniyorum. Araç [b]resmî araç planlarından[/b] üretildi, mevcut bir 3B modelden değil. Kaporta, iç mekân, tekerlekler ve animasyonlar bu proje için yapıldı.
+
+Sürekli geliştirmeyi planladığım bir deneme. Görünüş, sürüş ve günlük kullanım hakkındaki geri bildirimlerin memnuniyetle karşılanır.
+
+[h2]Özellikler[/h2]
+[list]
+[*]1985 Renault Trafic I T800 tenteli kasasının özgün modeli.
+[*]Ön iki koltuk ve 120 kapasiteli yük alanı.
+[*]Animasyonlu ön kapılar, sağ kayar yük kapısı, çift arka kanat ve kaput.
+[*]Aynı yük alanına arka kapılardan ya da açık kayar kapıdan ulaşılır.
+[*]Temiz beyaz ya da mavi kaporta: araçlar oluşturulurken yaklaşık %70 beyaz, %30 mavi.
+[*]Modellenmiş iç mekân, dokulu tekerlekler ve şeffaf ön cam ile ön kapı camları.
+[*]Park, teslimat ve esnaf bölgelerinde ve hurdalıklarda doğal olarak çıkar.
+[*]Vanilla araç mekaniği ve ganimeti. Başka mod gerekmez.
+[/list]
+
+[h2]Sürüm ve geri bildirim[/h2]
+
+[b]Build 42.21[/b] için yapıldı. Bu ilk sürüm hâlâ geliştirme aşamasında. Hata bildirirken oyun sürümünü, etkin modlarını ve sorunun nasıl ortaya çıktığını yaz. Ekran görüntüsü olmasa bile yazılı bir açıklama işe yarar.
+
+[h2]Discord[/h2]
+
+Soru, hata bildirimi ya da fikrin mi var? Discord'a katıl:
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
+[h2]Yapay zekâ hakkında bir not[/h2]
+
+Yıllardır geliştiriciyim ve kodlama ajanları ortaya çıkmadan çok önce mod yapıyordum; bu da çoğu zaman ailemle geçirdiğim zamandan çalıyordu. Claude Code ve Codex'i açıkça kullanıyorum: her özellik hâlâ tartışılıyor, tasarlanıyor ve planlanıyor; körü körüne "vibe coding" yapılmıyor. Yapay zekâ kalıcı; direnmek yerine uyum sağlamayı seçtim. Kişisel saldırılara karşı duran herkese teşekkür ederim.
+
+[h2]Projeye destek ol[/h2]
+
+Modu beğendin mi? Bir kahve bundan sonra gelenleri finanse etmeye yardımcı olur.
+[url=https://ko-fi.com/Z8Z8QJV31][img]https://storage.ko-fi.com/cdn/kofi6.png?v=6[/img][/url]
+
+[h2]Emek ve kaynaklar[/h2]
+
+Oluşturan: [b]batman[/b]. Kodlama ajanıyla kontrol edilen Blender ve resmî araç planları kullanıldı. Önceden var olan bir araç modeli kullanılmadı.
+Kaynak kodu ve proje dosyaları: [url=https://github.com/cyberbobjr/RenaultTrafic1]GitHub[/url].
