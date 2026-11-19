@@ -1,4 +1,4 @@
-# Renault Trafic I T800 — Project Zomboid 42.21
+# Renault Trafic I T800 — Project Zomboid 42.22
 
 Premier essai de véhicule pour Project Zomboid, réalisé en pilotant Blender via un agent de codage. Modèle construit à partir des blueprints officiels du véhicule, sans modèle 3D préexistant.
 

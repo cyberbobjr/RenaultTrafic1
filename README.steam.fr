@@ -1,6 +1,6 @@
 [h1]Renault Trafic I T800 — 1985[/h1]
 
-Un Renault Trafic de première génération pour [b]Project Zomboid Build 42.21[/b] : empattement court, toit bas et fourgon tôlé sans vitres de soute. Un petit utilitaire pour transporter vos réserves sur les routes du Kentucky.
+Un Renault Trafic de première génération pour [b]Project Zomboid Build 42.22[/b] : empattement court, toit bas et fourgon tôlé sans vitres de soute. Un petit utilitaire pour transporter vos réserves sur les routes du Kentucky.
 
 [h2]Mon premier essai de véhicule[/h2]
 
@@ -22,7 +22,7 @@ C'est une expérimentation que je compte continuer à améliorer. Vos retours su
 
 [h2]Version du jeu et retours[/h2]
 
-Conçu pour la [b]Build 42.21[/b]. Cette première version est encore en développement. Pour signaler un problème, indiquez votre version du jeu, vos mods actifs et les circonstances dans lesquelles il se produit. Une description écrite est utile même sans capture d'écran.
+Conçu pour la [b]Build 42.22[/b]. Cette première version est encore en développement. Pour signaler un problème, indiquez votre version du jeu, vos mods actifs et les circonstances dans lesquelles il se produit. Une description écrite est utile même sans capture d'écran.
 
 [h2]Discord[/h2]
 
